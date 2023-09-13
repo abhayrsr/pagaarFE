@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './dashboard.css';
 import { useAuth } from "../Provider/authProvider"; 
 import jwt from 'jsonwebtoken';
+import Send from '../Send/sendMoney';
+import UserSearch from '../Search/userSearch';
 
 var picture = require('./user.png');
 
@@ -42,6 +44,13 @@ function Dashboard(){
                 </div>
 
             </div>
+            <div className="sendButton">
+                <Send />
+            </div>
+            <div className="search">
+                <UserSearch placeholder="Search user..."/>
+            </div>
+            
 
         </div>
     )
