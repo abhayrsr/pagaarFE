@@ -7,9 +7,10 @@ function UserSearch() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
     const {token} = useAuth();
     const memoizedToken = useMemo(() => token, [token]);
-    console.log(memoizedToken)
+    console.log(memoizedToken);
     const fetchResults = async() => {
         try{
             
@@ -41,7 +42,22 @@ function UserSearch() {
         } else {
             setSearchResult([]);
         }
-    }, [debounceSearchQuery, fetchResults, token])
+    }, [debounceSearchQuery, memoizedToken])
+
+    const handleFilter = (e) => {
+      const searchWord = e.target.value;
+      setSearchQuery(searchWord)
+    }
+
+    // const filteredData = searchResult.filter((value) => {
+    //   return value.username.includes(searchQuery);
+    // })
+
+    const handleUserSelect = (user) => {
+      setSelectedUser(user);
+      setSearchQuery(user.username);
+      setSearchResult([]);
+    }
 
     return(
         <div className="search">
@@ -50,20 +66,27 @@ function UserSearch() {
               type="text"
               placeholder="Search for a user"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleFilter}
             />
             </div>
             {/* {isSearching && <p>Searching...</p>} */}
-            {searchResult.length > 0 && (
-        <div className="dataResults">
-          <h2>Search Results:</h2>
+            {searchResult.length > 0 && !selectedUser && (
+        <div className="dataResult">
+          {/* <h2 >Search Results:</h2> */}
           <ul>
             {searchResult.map((user) => (
-              <li>{user.username}</li>
+              <p className='dataItem' onClick={()=>{handleUserSelect(user); }}>{user.username}</p>
             ))}
           </ul>
         </div>
       )}
+      {
+        selectedUser && (
+          <div className={`selectedUser ${selectedUser ? 'active' : ''}`}>
+            
+          </div>
+        )
+      }
 
        </div>
     )

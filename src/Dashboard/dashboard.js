@@ -14,6 +14,7 @@ window.onbeforeunload = function() {
 function Dashboard(){
     const{token} = useAuth();
     const [userData, setUserData] = useState({username: null, balance: null});
+   
     useEffect(() => {
         if(token){
             const decodeToken = jwt.decode(token);
@@ -48,7 +49,7 @@ function Dashboard(){
                 <Send />
             </div>
             <div className="search">
-                <UserSearch placeholder="Search user..."/>
+                <UserSearch />
             </div>
             
 
