@@ -17,7 +17,8 @@
 }
 
 /* Styling for the search results container */
-.dataResult {
+.dataResult.active {
+  display: flex;
   width: 300px;
   height: 200px;
   overflow-y: auto;
@@ -50,8 +51,32 @@
   padding: 10px;
 }
 
+.clearUser {
+  display: flex;
+  align-items: center;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24 
+ 
+}
+
+.cross{
+  height: 40px;
+  width: 60px;
+}
+
+.clearUser{
+  background-color: #f5f5f5;
+}
+
 .selectedUser.active {
-  display: block;
+  display: flex;
+}
+
+.dataResult.hidden{
+  display: none;
 }
 
 /* Clear button styles (if used) */

@@ -2,15 +2,19 @@ import React, {useState, useEffect, useMemo} from 'react';
 import {useDebounce} from 'use-debounce';
 import './userSearch.css';
 import { useAuth } from "../Provider/authProvider"; 
+import Amount from '../Amount/amount';
 
 function UserSearch() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [amountComponent, setAmountComponent] = useState(false);
     const {token} = useAuth();
     const memoizedToken = useMemo(() => token, [token]);
-    console.log(memoizedToken);
+    const handleClick = () => {
+      setAmountComponent(true)
+    }
     const fetchResults = async() => {
         try{
             
@@ -59,6 +63,11 @@ function UserSearch() {
       setSearchResult([]);
     }
 
+    // const clearSelectedUser = () => {
+    //   setSelectedUser(null);
+    //   setSearchQuery(''); // Clear search query when unselecting a user
+    // };
+
     return(
         <div className="search">
             <div className="searchInputs">
@@ -69,21 +78,19 @@ function UserSearch() {
               onChange={handleFilter}
             />
             </div>
-            {/* {isSearching && <p>Searching...</p>} */}
-            {searchResult.length > 0 && !selectedUser && (
+            {(searchQuery.trim() !== '' || selectedUser) && (
         <div className="dataResult">
-          {/* <h2 >Search Results:</h2> */}
           <ul>
             {searchResult.map((user) => (
-              <p className='dataItem' onClick={()=>{handleUserSelect(user); }}>{user.username}</p>
+              <li className='dataItem' onClick={()=>{handleUserSelect(user)}}>{user.username}</li>
             ))}
           </ul>
         </div>
       )}
       {
         selectedUser && (
-          <div className={`selectedUser ${selectedUser ? 'active' : ''}`}>
-            
+          <div className={`selectedUser ${selectedUser ? 'active' : ''}`} onClick={handleClick}>
+            <div> <Amount /> </div>
           </div>
         )
       }

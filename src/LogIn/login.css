@@ -20,7 +20,7 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
-  button {
+  .loginButton {
     border-radius: 1rem;
     width: 200px;
     margin-top: 10px;
@@ -32,7 +32,7 @@
     padding: 10px 20px;
   }
   
-  button:hover {
+  .loginButton:hover {
     background: #1F83BD;
   }
   

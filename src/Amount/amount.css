@@ -1,0 +1,16 @@
+.amount {
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    margin-top: 10px;
+  }
+  
+ 
+  .amountInputs input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+  }

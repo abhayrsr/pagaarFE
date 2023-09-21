@@ -14,6 +14,11 @@ window.onbeforeunload = function() {
 function Dashboard(){
     const{token} = useAuth();
     const [userData, setUserData] = useState({username: null, balance: null});
+    const [searchComponent, setSearchComponent] = useState(false);
+
+    const handleClick = () => {
+        setSearchComponent(true);
+    }
    
     useEffect(() => {
         if(token){
@@ -45,12 +50,12 @@ function Dashboard(){
                 </div>
 
             </div>
-            <div className="sendButton">
+            <div className="sendButton" onClick={handleClick}>
                 <Send />
             </div>
-            <div className="search">
+            {searchComponent && (<div className="search">
                 <UserSearch />
-            </div>
+            </div>)}
             
 
         </div>
