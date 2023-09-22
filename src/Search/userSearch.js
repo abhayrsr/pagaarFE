@@ -8,7 +8,7 @@ function UserSearch() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(false);
     const [amountComponent, setAmountComponent] = useState(false);
     const {token} = useAuth();
     const memoizedToken = useMemo(() => token, [token]);
@@ -89,8 +89,15 @@ function UserSearch() {
       )}
       {
         selectedUser && (
-          <div className={`selectedUser ${selectedUser ? 'active' : ''}`} onClick={handleClick}>
-            <div> <Amount /> </div>
+          <div className={`selectedUser ${selectedUser ? '' : 'active'}`} onClick={handleClick}>
+            
+          </div>
+        )
+      }
+
+      {
+        selectedUser && (
+          <div className={`amountSend ${selectedUser ? 'active' : ''}`}> <Amount /> 
           </div>
         )
       }

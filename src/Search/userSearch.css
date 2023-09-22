@@ -51,6 +51,10 @@
   padding: 10px;
 }
 
+.amountSend.active{
+  display: flex;
+}
+
 .clearUser {
   display: flex;
   align-items: center;

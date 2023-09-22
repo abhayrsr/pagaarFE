@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import './amount.css'
 
 function Amount(){
     const [amount, setAmount] = useState('');
+
     const handleAmount = (e) =>{
         const enteredAmount = e.target.value;
         setAmount(enteredAmount);
@@ -14,7 +16,10 @@ function Amount(){
             placeholder="enter amount"
             value={amount}
             onChange={handleAmount}
-            />      
+            />   
+            {amount && (<button className="sendIcon">
+            <i className="material-icons">send</i>
+            </button> )}  
         </div> 
         </div>
     );

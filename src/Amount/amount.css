@@ -14,3 +14,18 @@
     font-size: 16px;
     outline: none;
   }
+
+  .sendIcon {
+  
+    background-color: #38B6FF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .sendIcon:hover {
+    background-color: #00568c;
+    cursor: pointer;
+  }
