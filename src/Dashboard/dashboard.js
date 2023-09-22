@@ -17,7 +17,7 @@ function Dashboard(){
     const [searchComponent, setSearchComponent] = useState(false);
 
     const handleClick = () => {
-        setSearchComponent(true);
+        setSearchComponent(!searchComponent);
     }
    
     useEffect(() => {
@@ -51,7 +51,7 @@ function Dashboard(){
 
             </div>
             <div className="sendButton" onClick={handleClick}>
-                <Send />
+               {searchComponent ? <button>unsend</button> :<Send />}
             </div>
             {searchComponent && (<div className="search">
                 <UserSearch />

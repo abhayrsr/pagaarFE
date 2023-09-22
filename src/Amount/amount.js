@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import {useAuth} from "../Provider/authProvider";
 import './amount.css'
 
 function Amount(){
     const [amount, setAmount] = useState('');
+    const {token} = useAuth();
 
     const handleAmount = (e) =>{
         const enteredAmount = e.target.value;
@@ -15,11 +17,13 @@ function Amount(){
             type="text"
             placeholder="enter amount"
             value={amount}
-            onChange={handleAmount}
-            />   
-            {amount && (<button className="sendIcon">
+            onChange={handleAmount}  
+            />  
+
+             {amount && (<button className="sendIcon">
             <i className="material-icons">send</i>
-            </button> )}  
+            </button> )} 
+            
         </div> 
         </div>
     );

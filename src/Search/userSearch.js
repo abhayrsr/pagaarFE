@@ -63,6 +63,13 @@ function UserSearch() {
       setSearchResult([]);
     }
 
+    const handleCancel = () => {
+      setSearchQuery('');
+      setSearchResult([]);
+      setSelectedUser(false);
+      setAmountComponent(false);
+    }
+
     // const clearSelectedUser = () => {
     //   setSelectedUser(null);
     //   setSearchQuery(''); // Clear search query when unselecting a user
@@ -99,6 +106,16 @@ function UserSearch() {
         selectedUser && (
           <div className={`amountSend ${selectedUser ? 'active' : ''}`}> <Amount /> 
           </div>
+        )
+      }
+
+      {
+        selectedUser && (
+          <button className="cancel"> 
+          <i className="material-symbols-outlined" onClick={handleCancel}>
+            cancel
+          </i>
+          </button>
         )
       }
 
