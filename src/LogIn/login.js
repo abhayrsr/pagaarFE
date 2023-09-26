@@ -35,9 +35,11 @@ function Login() {
     if (response.ok) {
       const data = await response.json();
       const token = data.token;
-
+      console.log("Response data:", data);
       setToken(token);
-      navigate('/');
+      localStorage.setItem('authToken', token);
+      console.log("Token set:", token);
+      navigate('/dashboard');
     } else {
      
       console.error("Authentication failed");

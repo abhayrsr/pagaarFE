@@ -4,7 +4,10 @@ import{createContext, useContext, useEffect, useMemo, useState} from "react";
 const AuthContext = createContext();
 const AuthProvider = ({children}) => {
 
-    const[token, setToken_] = useState(localStorage.getItem("token"));
+    const[token, setToken_] = useState(() => {
+        const retrievedToken = localStorage.getItem('authToken');
+        console.log("Retrieved token:", retrievedToken);
+        return retrievedToken || "";});
     const setToken = (newToken) => {
         setToken_(newToken)
     }
@@ -18,6 +21,10 @@ const AuthProvider = ({children}) => {
             localStorage.removeItem('token');
         }
     },[token])
+
+    const isAuthenticated = () => {
+        return !!token; 
+      };
 
     const login = async (username, password) => {
         try {
@@ -36,7 +43,8 @@ const AuthProvider = ({children}) => {
         () => ({
             token,
             setToken,
-            login
+            login,
+            isAuthenticated
         }), [token,setToken,login]
     );
 

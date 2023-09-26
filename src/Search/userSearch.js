@@ -3,6 +3,7 @@ import {useDebounce} from 'use-debounce';
 import './userSearch.css';
 import { useAuth } from "../Provider/authProvider"; 
 import Amount from '../Amount/amount';
+import jwt from "jsonwebtoken";
 
 function UserSearch() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -10,6 +11,7 @@ function UserSearch() {
     const [isSearching, setIsSearching] = useState(false);
     const [selectedUser, setSelectedUser] = useState(false);
     const [amountComponent, setAmountComponent] = useState(false);
+    const [senderName, setSenderName] = useState('')
     const {token} = useAuth();
     const memoizedToken = useMemo(() => token, [token]);
     const handleClick = () => {
@@ -53,10 +55,6 @@ function UserSearch() {
       setSearchQuery(searchWord)
     }
 
-    // const filteredData = searchResult.filter((value) => {
-    //   return value.username.includes(searchQuery);
-    // })
-
     const handleUserSelect = (user) => {
       setSelectedUser(user);
       setSearchQuery(user.username);
@@ -70,10 +68,14 @@ function UserSearch() {
       setAmountComponent(false);
     }
 
-    // const clearSelectedUser = () => {
-    //   setSelectedUser(null);
-    //   setSearchQuery(''); // Clear search query when unselecting a user
-    // };
+    useEffect(() => {
+      if(token){
+        const decodeToken = jwt.decode(token);
+        setSenderName({
+          username: decodeToken.username
+        })
+      }
+    }, [token])
 
     return(
         <div className="search">
@@ -104,7 +106,8 @@ function UserSearch() {
 
       {
         selectedUser && (
-          <div className={`amountSend ${selectedUser ? 'active' : ''}`}> <Amount /> 
+          <div className={`amountSend ${selectedUser ? 'active' : ''}`}> 
+          <Amount senderName={senderName.username} receiverName={selectedUser.username}/> 
           </div>
         )
       }

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useNavigate} from "react-router-dom";
 import './dashboard.css';
 import { useAuth } from "../Provider/authProvider"; 
 import jwt from 'jsonwebtoken';
@@ -7,20 +8,23 @@ import UserSearch from '../Search/userSearch';
 
 var picture = require('./user.png');
 
-window.onbeforeunload = function() {
-    localStorage.clear();
- }
-
 function Dashboard(){
-    const{token} = useAuth();
+    const{token, isAuthenticated} = useAuth();
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({username: null, balance: null});
     const [searchComponent, setSearchComponent] = useState(false);
+  
 
     const handleClick = () => {
         setSearchComponent(!searchComponent);
     }
    
     useEffect(() => {
+      if (!isAuthenticated) {
+        console.log("x")
+        return;
+      }
+
         if(token){
             const decodeToken = jwt.decode(token);
             setUserData({
@@ -28,7 +32,18 @@ function Dashboard(){
                 balance: decodeToken.balance
             })
         }
-    }, [token]);
+
+        const handleBeforeUnload = () => {
+            localStorage.clear();
+          };
+      
+          window.addEventListener('beforeunload', handleBeforeUnload);
+      
+          return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+          };
+        
+    }, [token, isAuthenticated, navigate]);
 
     return(
         <div className="dashboard">
@@ -56,7 +71,6 @@ function Dashboard(){
             {searchComponent && (<div className="search">
                 <UserSearch />
             </div>)}
-            
 
         </div>
     )
