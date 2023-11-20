@@ -1,0 +1,72 @@
+.login {
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    background-color: #f8f9fd;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .loginButton {
+    border-radius: 1rem;
+    width: 200px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #38B6FF;
+    border: 1px solid #38B6FF;
+    color: #fff;
+    padding: 10px 20px;
+  }
+  
+  .loginButton:hover {
+    background: #1F83BD;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-form {
+    background-color: white;
+    padding: 2rem;
+  }
+  
+  .list-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+  }

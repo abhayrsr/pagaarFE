@@ -1,0 +1,60 @@
+*{
+    margin: 0rem;
+    padding: 0rem;
+    box-sizing: border-box;
+}
+
+.title{
+    position: absolute;
+    top: 40px !important;
+    left: 400px !important;
+}
+
+.profile{
+    position: absolute;
+    top: 40px !important;
+    right: 400px !important;
+}
+
+.profilePicture{
+    height: auto;
+    width: 100px;
+}
+
+.balance{
+    width:700px;
+    height:200px;
+    background-color:#38B6FF;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius: 0.5rem;
+}
+
+.amount{
+    height: 75px;
+    width: 75px;
+    color:white;
+    border-radius:7px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.total{
+    height: 75px;
+    width: 75px;
+    color:white;
+    border-radius:7px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.sendButton{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 36rem;
+}

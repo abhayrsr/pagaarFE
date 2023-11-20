@@ -1,0 +1,31 @@
+.amount {
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    margin-top: 10px;
+  }
+  
+ 
+  .amountInputs input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+  }
+
+  .sendIcon {
+  
+    background-color: #38B6FF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .sendIcon:hover {
+    background-color: #00568c;
+    cursor: pointer;
+  }
